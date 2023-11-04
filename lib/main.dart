@@ -4,60 +4,86 @@ import 'package:quizapp/models/quiz_question.dart';
 import 'package:quizapp/data/questions.dart';
 
 void main() {
-  runApp(MaterialApp(home: QuestionScreen()));
+  runApp(const MaterialApp(home: QuestionScreen()));
 }
+
+// Stateless => Ekranda değişime uğramayacak, UI widget
+// CTRL + .
+class StartScreen extends StatelessWidget {
+  const StartScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 158, 131, 234),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("assets/images/quiz-logo.png", width: 250),
+            const Text(
+              "Quiz App",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold),
+            ),
+            OutlinedButton.icon(
+              onPressed: () {},
+              icon: const Icon(Icons.arrow_right_alt),
+              label: const Text("Start"),
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.fromLTRB(40, 20, 40, 20)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// Boilerplate
 
 class QuestionScreen extends StatefulWidget {
   const QuestionScreen({Key? key}) : super(key: key);
 
   @override
-  _QuestionScreenState createState() => _QuestionScreenState();
+  _QuestionState createState() => _QuestionState();
 }
 
-class _QuestionScreenState extends State<QuestionScreen> {
-  int currentQuestionIndex = 0;
-  List<String> shuffledAnswers = [];
-  Random random = Random();
+class _QuestionState extends State<QuestionScreen> {
+  var index = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    showQuestion(currentQuestionIndex);
-  }
-
-  void showQuestion(int questionIndex) {
-    final QuizQuestion question = questions[questionIndex];
-    shuffledAnswers = List.from(question.answers)..shuffle();
-    setState(() {});
-  }
-
-  void nextQuestion() {
-    if (currentQuestionIndex < questions.length - 1) {
-      currentQuestionIndex++;
-      showQuestion(currentQuestionIndex);
-    } else {}
+  void changeQuestion() {
+    setState(() {
+      index += 1;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Quiz App'),
+        title: const Text("QUIZ"),
+        centerTitle: true,
       ),
+      backgroundColor: Colors.amber,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(questions[currentQuestionIndex].question),
-            ...shuffledAnswers.map((answer) {
+            Image.asset("assets/images/quiz-logo.png", width: 250),
+            Text(questions[index].question),
+            ...questions[index].answers.map((answer) {
               return ElevatedButton(
                 onPressed: () {
-                  nextQuestion();
+                  if (index < 4) {
+                    changeQuestion();
+                  }
                 },
-                child: Text(
-                  answer,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white),
+                child: Container(
+                  child: Text(answer),
                 ),
               );
             })

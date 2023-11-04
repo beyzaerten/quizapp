@@ -15,6 +15,10 @@ const questions = [
   QuizQuestion("Eurovision'da birinci olan kadın sanatçımızın adı nedir?",
       ["Ajda Pekkan", "Sertap Erener", "Alizade", "Hadise"]),
   QuizQuestion("5*2 işleminin sonucu kaçtır?", ["10", "12", "13", "5"]),
-  QuizQuestion("Flutter ile hangi platformlarda uygulama geliştirebilirsiniz?",
-      ["iOS ve Android", "Sadece iOS", "Sadece Android", "Windows ve macOS"]),
+  QuizQuestion("Kadınlar stand-up yapabilir mi?", [
+    "Tabiki yapabilir",
+    "Yerine ve zamanına göre değişir",
+    "Yapmasalar daha iyi olur",
+    "Kadınlar komik değildir!"
+  ]),
 ];
