@@ -68,12 +68,10 @@ class _QuestionState extends State<QuestionScreen> {
         title: const Text("QUIZ"),
         centerTitle: true,
       ),
-      backgroundColor: Colors.amber,
-      body: Center(
+      backgroundColor: Color.fromARGB(255, 255, 201, 37)   body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("assets/images/quiz-logo.png", width: 250),
             Text(questions[index].question),
             ...questions[index].answers.map((answer) {
               return ElevatedButton(
