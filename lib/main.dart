@@ -68,7 +68,8 @@ class _QuestionState extends State<QuestionScreen> {
         title: const Text("QUIZ"),
         centerTitle: true,
       ),
-      backgroundColor: Color.fromARGB(255, 255, 201, 37)   body: Center(
+      backgroundColor: Color.fromARGB(255, 255, 201, 37),
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
